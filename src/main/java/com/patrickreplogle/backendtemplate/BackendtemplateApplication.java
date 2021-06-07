@@ -1,5 +1,6 @@
 package com.patrickreplogle.backendtemplate;
 
+import com.patrickreplogle.backendtemplate.util.Mappings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,8 +24,8 @@ public class BackendtemplateApplication {
 
     public static void main(String[] args) {
         // Check to see if the environment variables exists. If they do not, stop execution of application.
-        checkEnvironmentVariable("OAUTHCLIENTID");
-        checkEnvironmentVariable("OAUTHCLIENTSECRET");
+        checkEnvironmentVariable(Mappings.OAUTHCLIENTID);
+        checkEnvironmentVariable(Mappings.OAUTHCLIENTSECRET);
 
         if (!stop) {
             SpringApplication.run(BackendtemplateApplication.class, args);

@@ -5,6 +5,7 @@ import com.patrickreplogle.backendtemplate.models.Role;
 import com.patrickreplogle.backendtemplate.models.User;
 import com.patrickreplogle.backendtemplate.models.UserRoles;
 import com.patrickreplogle.backendtemplate.repository.UserRepository;
+import com.patrickreplogle.backendtemplate.util.Mappings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -91,6 +92,12 @@ public class UserServiceImpl implements UserService{
                         .getRoleid());
                 newUser.getRoles()
                         .add(new UserRoles(newUser, addRole));
+            }
+
+            // automatically assign a new user a "user" role if they haven't been assigned one already
+            if (newUser.getRoles().size() == 0) {
+                Role addRole = roleService.findByName(Mappings.USER_ROLE);
+                newUser.getRoles().add(new UserRoles(newUser, addRole));
             }
 
             return userRepository.save(newUser);
