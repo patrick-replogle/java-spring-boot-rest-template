@@ -1,5 +1,6 @@
 package com.patrickreplogle.backendtemplate.config;
 
+import com.patrickreplogle.backendtemplate.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,8 +15,8 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     // === fields ===
-    private static String CLIENT_ID = System.getenv("OAUTHCLIENTID");
-    private static String CLIENT_SECRET = System.getenv("OAUTHCLIENTSECRET");
+    private static String CLIENT_ID = System.getenv(Constants.OAUTHCLIENTID);
+    private static String CLIENT_SECRET = System.getenv(Constants.OAUTHCLIENTSECRET);
     private static String GRANT_TYPE_PASSWORD = "password";
     private static String AUTHORIZATION_CODE = "authorization_code";
     private static String SCOPE_READ = "read";
