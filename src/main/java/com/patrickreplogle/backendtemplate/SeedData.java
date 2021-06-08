@@ -5,7 +5,7 @@ import com.patrickreplogle.backendtemplate.models.User;
 import com.patrickreplogle.backendtemplate.models.UserRoles;
 import com.patrickreplogle.backendtemplate.services.RoleService;
 import com.patrickreplogle.backendtemplate.services.UserService;
-import com.patrickreplogle.backendtemplate.util.Mappings;
+import com.patrickreplogle.backendtemplate.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -25,8 +25,8 @@ public class SeedData implements CommandLineRunner {
     @Transactional
     @Override
     public void run(String... args) throws Exception {
-        Role r1 = new Role(Mappings.ADMIN_ROLE);
-        Role r2 = new Role(Mappings.USER_ROLE);
+        Role r1 = new Role(Constants.ADMIN_ROLE);
+        Role r2 = new Role(Constants.USER_ROLE);
 
         r1 = roleService.save(r1);
         r2 = roleService.save(r2);

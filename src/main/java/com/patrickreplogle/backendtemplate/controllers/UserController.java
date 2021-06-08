@@ -2,7 +2,7 @@ package com.patrickreplogle.backendtemplate.controllers;
 
 import com.patrickreplogle.backendtemplate.models.User;
 import com.patrickreplogle.backendtemplate.services.UserService;
-import com.patrickreplogle.backendtemplate.util.Mappings;
+import com.patrickreplogle.backendtemplate.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-@RequestMapping(Mappings.USERS_ENDPOINT) // "/users
+@RequestMapping(Constants.USERS_ENDPOINT) // "/users
 public class UserController {
 
     @Autowired
