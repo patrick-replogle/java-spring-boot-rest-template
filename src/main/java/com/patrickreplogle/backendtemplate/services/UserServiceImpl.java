@@ -104,6 +104,7 @@ public class UserServiceImpl implements UserService{
         }
     }
 
+    @Transactional
     @Override
     public void delete(long id) throws ResourceNotFoundException {
         userRepository.findById(id)
