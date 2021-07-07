@@ -97,7 +97,7 @@ public class UserController {
                 .toUri();
         responseHeaders.setLocation(newUserURI);
 
-        return new ResponseEntity<>(null,
+        return new ResponseEntity<>(newuser,
                 responseHeaders,
                 HttpStatus.CREATED);
     }
