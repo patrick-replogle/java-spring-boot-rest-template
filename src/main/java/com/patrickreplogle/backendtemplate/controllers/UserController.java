@@ -1,6 +1,8 @@
 package com.patrickreplogle.backendtemplate.controllers;
 
+import com.patrickreplogle.backendtemplate.exceptions.ResourceFoundException;
 import com.patrickreplogle.backendtemplate.models.User;
+import com.patrickreplogle.backendtemplate.repository.UserRepository;
 import com.patrickreplogle.backendtemplate.services.UserService;
 import com.patrickreplogle.backendtemplate.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     // returns a list of all users
     @GetMapping(value = "/users",
@@ -84,8 +89,13 @@ public class UserController {
     public ResponseEntity<?> addNewUser(
             @Valid
             @RequestBody
-                    User newuser) throws
-            URISyntaxException {
+                    User newuser)
+            throws ResourceFoundException {
+        // first check if username or email are already taken
+        if (userRepository.findByEmail(newuser.getEmail()) != null || userRepository.findByUsername(newuser.getUsername()) != null) {
+           throw new ResourceFoundException("email or username already taken");
+        }
+
         newuser.setUserid(0);
         newuser = userService.save(newuser);
 

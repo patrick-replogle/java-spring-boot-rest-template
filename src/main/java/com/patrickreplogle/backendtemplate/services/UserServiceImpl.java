@@ -50,6 +50,17 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public User findUserByEmail(String email) throws ResourceNotFoundException {
+        User user = userRepository.findByEmail(email);
+
+        if (user == null) {
+            throw new ResourceNotFoundException("User email" + email + " not found.");
+        }
+
+        return user;
+    }
+
+    @Override
     public User findUserById(long id) throws ResourceNotFoundException {
         return userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User id " + id + " not found."));
@@ -68,7 +79,7 @@ public class UserServiceImpl implements UserService{
     @Transactional
     @Override
     public User save(User user) {
-        {
+
             User newUser = new User();
 
             if (user.getUserid() != 0) {
@@ -101,7 +112,7 @@ public class UserServiceImpl implements UserService{
             }
 
             return userRepository.save(newUser);
-        }
+
     }
 
     @Transactional
@@ -144,6 +155,4 @@ public class UserServiceImpl implements UserService{
 
         return userRepository.save(currentUser);
     }
-
-
 }
